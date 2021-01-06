@@ -19,6 +19,8 @@
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^4.2.0",
+    "husky": "^4.3.6",
+    "lint-staged": "^10.5.3",
     "parcel-bundler": "^1.12.4",
     "prettier": "^2.2.1"
   },
@@ -27,6 +29,14 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint \"src/**/*.{js,jsx}\"",
     "format": "npx prettier -w \"src/*\""
+  },
+  "lint-staged": {
+    "**/*.{js,jsx}": "npm run lint"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "keywords": [],
   "author": "",
