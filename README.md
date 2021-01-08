@@ -1,6 +1,6 @@
-# Monitoreo comunitario
+# Community Based Monitoring Dashboard
 
-First demo page version of the frontend to visualize progress on community based monitoring projects.
+First demo page version of the dashboard to visualize progress on community based monitoring projects.
 
 v0.1.0
 
