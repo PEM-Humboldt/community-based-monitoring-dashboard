@@ -1,44 +1,32 @@
-import React, { useEffect, useState } from 'react';
-import Plot from 'react-plotly.js';
-import loadCsv from './data/loadData';
+import React, { useState } from 'react';
+
+import M06 from './M06';
+import M01 from './M01';
 
 const App = () => {
-  const [data, setData] = useState(null);
-
-  useEffect(() => {
-    const dataFunc = async () => setData(await loadCsv('reg_diarios'));
-    dataFunc();
-  }, []);
+  const [metodology, setMetodology] = useState('');
 
   return (
     <>
       <h1>Avances monitoreo comunitario</h1>
-      <div id="06_medicion_lluvia">
-        <h2>M06 - Medición de lluvia</h2>
-        <div id="reg_diarios">
-          {!data ? (
-            'cargando...'
-          ) : (
-            <Plot
-              data={Object.keys(data).map((name) => ({
-                ...data[name],
-                name,
-                type: 'scatter',
-              }))}
-              layout={{
-                title: {
-                  text: 'Precipitación diaria',
-                  pad: 0,
-                  yanchor: 'top',
-                },
-                xaxis: { title: 'Fecha', automargin: true },
-                yaxis: { title: 'precipitación (cm)' },
-              }}
-              config={{ displayModeBar: false, scrollZoom: true }}
-            />
-          )}
-        </div>
-      </div>
+      <label htmlFor="sel_metodologia">
+        Seleccione la metodología de monitoreo:
+        <select
+          id="sel_metodologia"
+          onChange={(event) => setMetodology(event.target.value)}
+          aria-label="metodologia"
+        >
+          <option disabled selected>
+            -- Seleccione una opción --
+          </option>
+          <option value="01_validacion_coberturas">
+            M01 - Validación de coberturas
+          </option>
+          <option value="06_medicion_lluvia">M06 - Medición de lluvia</option>
+        </select>
+      </label>
+      {metodology === '01_validacion_coberturas' && <M01 />}
+      {metodology === '06_medicion_lluvia' && <M06 />}
     </>
   );
 };
