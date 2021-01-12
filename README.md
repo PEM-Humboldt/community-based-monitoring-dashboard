@@ -8,18 +8,18 @@ v0.1.0
 
 ### Prerequisites
 
-Node.js and npm, version specified in `.nvmrc` file
+Node.js and npm, version specified in [.nvmrc](.nvmrc) file
 
 ### Installing and Running
 
 Run `npm i` to install dependencies
 
-Run `npm run dev` ru run dev server and watch for changes
+Run `npm run dev` to run dev server and watch for changes
 
 #### Other scripts
 
-`npm lint` to check for eslint errors
-`npm format` to format code with prettier
+- `npm lint` to check for eslint errors
+- `npm format` to format code with prettier
 
 ## Authors
 
