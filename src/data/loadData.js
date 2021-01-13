@@ -1,10 +1,12 @@
 import Papa from 'papaparse';
 import regLluviaCsv from 'url:./registros_lluvia.csv';
 import disturbiosCsv from 'url:./disturbios.csv';
+import habCrecimientoCsv from 'url:./habito_crecimiento.csv';
 
 const graphData = {
   reg_diarios: regLluviaCsv,
   disturbios: disturbiosCsv,
+  habito_crecimiento: habCrecimientoCsv,
 };
 
 const processRegLluvia = (rawData) => {
@@ -26,9 +28,24 @@ const processDisturbios = (rawData) => {
   return result;
 };
 
+const processHabCrecimiento = (rawData) => {
+  const bars = {};
+  rawData.forEach((row) => {
+    if (!bars[row.habito_de_crecimiento_categ_lab]) {
+      bars[row.habito_de_crecimiento_categ_lab] = { x: [], y: [] };
+    }
+    bars[row.habito_de_crecimiento_categ_lab].x.push(row.fecha_id);
+    bars[row.habito_de_crecimiento_categ_lab].y.push(
+      parseFloat(row.habito_de_crecimiento_prop.replace(/,/g, '.'))
+    );
+  });
+  return bars;
+};
+
 const graphProcess = {
   reg_diarios: processRegLluvia,
   disturbios: processDisturbios,
+  habito_crecimiento: processHabCrecimiento,
 };
 
 const loadCsv = (graphName) => {
