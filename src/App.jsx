@@ -4,6 +4,8 @@ import M01 from './M01';
 import M02 from './M02';
 import M06 from './M06';
 
+import './CBMstyles.css';
+
 const App = () => {
   const [metodology, setMetodology] = useState('');
 
